@@ -2,14 +2,12 @@
 @use "../styles/partials/typography";
 
 .App {
-  &__title {
-    font-size: 5rem;
-    color: white;
-  }
-
+  height: 100vh;
+  display: flex;
+  align-items: center;
   &__snow {
     background: none;
-    background-color: black;
+    background-color: pink;
     background-image: url("./assets/icons/cookie.png"),
       url("./assets/icons/cookie.png"), url("./assets/icons/cookie.png");
     height: 100%;

@@ -1,5 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap");
+
+@font-face {
+  font-family: "retro";
+  src: url("../../src/assets/fonts/retro.TTF");
+}
+
+@font-face {
+  font-family: "pixel";
+  src: url("../../src/assets/fonts/pixel.ttf");
+}
+
+// @font-face {
+//   font-family: "Mouse Memoirs";
+//   src: url();
+// }
 
 * {
-  font-family: "Inter", sans-serif;
+  font-family: "Mouse Memoirs", sans-serif;
 }
