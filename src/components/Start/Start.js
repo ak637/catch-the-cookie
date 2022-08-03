@@ -1,14 +1,26 @@
 import "./Start.scss";
 import { useState } from "react";
 import startAudio from "../../assets/audio/start.mp3";
+import CookieCatch from "../CookieCatch/CookieCatch";
+import { render } from "@testing-library/react";
 
 const Start = () => {
   const [audio] = useState(new Audio(startAudio));
+
+  const [activeGame, setActiveGame] = useState("start");
+  const clickHandler = () => {
+    if (activeGame !== "CookieCatch") {
+      render(<CookieCatch />);
+      setActiveGame("CookieCatch");
+    }
+  };
+
   return (
     <section className="startContainer">
       <h1 className="startContainer__title">Catch the Cookie!</h1>
       <h3
         className="startContainer__play"
+        onClick={clickHandler}
         onMouseEnter={() => {
           audio.play();
         }}
