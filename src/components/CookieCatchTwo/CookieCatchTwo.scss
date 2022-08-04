@@ -7,18 +7,19 @@
     margin: 0;
   }
 
-  &__scrolLContainer {
-    border: 3px solid black;
-    border-radius: 5px;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
+  // &__scrollContainer {
+  //   border: 3px solid black;
+  //   border-radius: 5px;
+  //   overflow: hidden;
+  //   width: 100%;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: space-evenly;
+  // }
 
   &__image {
     width: 100px;
+    cursor: pointer;
   }
 
   &__scrollText-ltr {
