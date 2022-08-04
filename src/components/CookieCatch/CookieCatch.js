@@ -30,7 +30,7 @@ function useWindowDimensions() {
 function CookieCatch({ score, setScore, setActiveGame }) {
   const { height, width } = useWindowDimensions();
   const [difficulty, setDifficulty] = useState(2);
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(10000);
 
   useEffect(() => {
     const timer =
