@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
-import "./CookieCatch.scss";
+import "./CookieCatchTwo.scss";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -27,25 +27,10 @@ function useWindowDimensions() {
   return windowDimensions;
 }
 
-function CookieCatch({ score, setScore, setActiveGame }) {
+function CookieCatchTwo({ score, setScore }) {
   const { height, width } = useWindowDimensions();
   const [difficulty, setDifficulty] = useState(2);
-  const [counter, setCounter] = useState(10);
-
-  useEffect(() => {
-    const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-    return () => clearInterval(timer);
-  }, [counter]);
-
-  function endGame() {
-    if (counter === 0) {
-      setActiveGame("CookieCatchTwo");
-      return;
-    }
-  }
-  endGame();
-
+  //   const [score, setScore] = useState(0);
   const canvasRef = useRef();
   console.log("score->", score);
 
@@ -69,13 +54,12 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   });
 
   return (
-    <div className="CookieCatchContainer">
+    <div className="CookieCatchContainerTwo">
       <p className="CookieCatchContainerTwo__text">Difficulty: {difficulty}</p>
       <p className="CookieCatchContainerTwo__text">Score: {score}</p>
-      <p className="CookieCatchContainerTwo__text">Time left: {counter}</p>
-      <div id="CookieCatchContainer__canvas" ref={canvasRef}>
+      <div id="CookieCatchContainerTwo__canvas" ref={canvasRef}>
         <img
-          className="CookieCatchContainer__e"
+          className="CookieCatchContainerTwo__e"
           src="https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f36a.png"
           alt="Game"
           onClick={increaseDifficulty}
@@ -85,4 +69,4 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   );
 }
 
-export default CookieCatch;
+export default CookieCatchTwo;

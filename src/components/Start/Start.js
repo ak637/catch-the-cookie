@@ -1,25 +1,20 @@
 import "./Start.scss";
 import { useState } from "react";
 import startAudio from "../../assets/audio/start.mp3";
-import CookieCatch from "../CookieCatch/CookieCatch";
-import { render } from "@testing-library/react";
 
-const Start = (props) => {
-  console.log(props);
+const Start = ({ activeGame, setActiveGame, score, setScore }) => {
   const [audio] = useState(new Audio(startAudio));
 
   const clickHandler = () => {
-    if (props.activeGame !== "CookieCatch") {
-      render(<CookieCatch />);
-      props.setActiveGame("CookieCatch");
-      console.log(props.activeGame);
+    if (activeGame !== "CookieCatch") {
+      setActiveGame("CookieCatch");
       audio.pause();
     }
   };
 
   return (
     <>
-      {props.activeGame === "start" && (
+      {activeGame === "start" && (
         <section className="startContainer">
           <h1 className="startContainer__title">Catch the Cookie!</h1>
           <h3
