@@ -30,7 +30,7 @@ function useWindowDimensions() {
 function CookieCatch({ score, setScore, setActiveGame }) {
   const { height, width } = useWindowDimensions();
   const [difficulty, setDifficulty] = useState(2);
-  const [counter, setCounter] = useState(10000);
+  const [counter, setCounter] = useState(10);
 
   useEffect(() => {
     const timer =
@@ -38,13 +38,16 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     return () => clearInterval(timer);
   }, [counter]);
 
-  function endGame() {
-    if (counter === 0) {
-      setActiveGame("CookieCatchTwo");
-      return;
+  useEffect(() => {
+    function endGame() {
+      if (counter === 0) {
+        setActiveGame("CookieCatchTwo");
+        return;
+      }
     }
-  }
-  endGame();
+
+    endGame();
+  }, [counter, setActiveGame]);
 
   const canvasRef = useRef();
   console.log("score->", score);
