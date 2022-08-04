@@ -2,10 +2,18 @@
   background-color: pink;
   width: 100vw;
   height: 100vh;
+  overflow: none;
+  user-select: none;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
   &__canvas {
     position: fixed;
     color: white;
-    width: 100%;
+    width: 75px;
     height: 100%;
   }
   &__e {
@@ -17,5 +25,12 @@
   }
   &__text {
     margin: 0;
+    font-size: 3rem;
+    margin-top: 1%;
+  }
+  &__image {
+    margin: 0;
+    width: 5%;
+    cursor: pointer;
   }
 }

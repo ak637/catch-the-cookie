@@ -2,20 +2,21 @@
   background-color: #ffdac1;
   width: 100%;
   height: 100vh;
+  overflow: none;
 
   &__stats-score {
     margin: 0;
   }
 
-  // &__scrollContainer {
-  //   border: 3px solid black;
-  //   border-radius: 5px;
-  //   overflow: hidden;
-  //   width: 100%;
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: space-evenly;
-  // }
+  &__scrollContainer {
+    // border: 3px solid black;
+    // border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 
   &__image {
     width: 100px;

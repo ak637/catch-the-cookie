@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import "./CookieCatch.scss";
+import exit from "../../assets/icons/exit-sign.png";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -30,7 +31,7 @@ function useWindowDimensions() {
 function CookieCatch({ score, setScore, setActiveGame }) {
   const { height, width } = useWindowDimensions();
   const [difficulty, setDifficulty] = useState(2);
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(15);
 
   useEffect(() => {
     const timer =
@@ -49,10 +50,18 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     endGame();
   }, [counter, setActiveGame]);
 
-  const canvasRef = useRef();
-  console.log("score->", score);
+  function displayPoints() {
+    return <div>+10 points!</div>;
+  }
 
+  function exitHandler() {
+    setActiveGame("start");
+    setScore(0);
+  }
+
+  const canvasRef = useRef();
   const increaseDifficulty = () => {
+    displayPoints();
     setScore(score + 1);
     setDifficulty(difficulty - 0.1);
   };
@@ -73,15 +82,26 @@ function CookieCatch({ score, setScore, setActiveGame }) {
 
   return (
     <div className="CookieCatchContainer">
-      <p className="CookieCatchContainerTwo__text">Difficulty: {difficulty}</p>
-      <p className="CookieCatchContainerTwo__text">Score: {score}</p>
-      <p className="CookieCatchContainerTwo__text">Time left: {counter}</p>
-      <div id="CookieCatchContainer__canvas" ref={canvasRef}>
+      <div className="CookieCatchContainer__header">
+        <p className="CookieCatchContainer__text">
+          Difficulty: {difficulty.toFixed(2)}
+        </p>
+        <p className="CookieCatchContainer__text">Time left: {counter}</p>
+        <p className="CookieCatchContainer__text">Score: {score}</p>
+        <img
+          className="CookieCatchContainer__image"
+          src={exit}
+          alt="exit sign"
+          onClick={exitHandler}
+        />
+      </div>
+      <div className="CookieCatchContainer__canvas" ref={canvasRef}>
         <img
           className="CookieCatchContainer__e"
           src="https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f36a.png"
           alt="Game"
           onClick={increaseDifficulty}
+          draggable="false"
         />
       </div>
     </div>
