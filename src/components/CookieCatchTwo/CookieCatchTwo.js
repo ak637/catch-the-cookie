@@ -22,7 +22,7 @@ function CookieCatchTwo({ score, setScore, setActiveGame }) {
     if (roundOver) {
       setActiveGame("start");
     }
-  }, [roundOver]);
+  }, [roundOver, setActiveGame]);
 
   const images = () => {
     const imgUrls = [apple, cookie, croissant, doughnut, kiwi];

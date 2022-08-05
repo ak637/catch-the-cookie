@@ -13,7 +13,7 @@ export default function Counter(props) {
     if (counter === 0) {
       props.roundOver(true);
     }
-  }, [counter]);
+  }, [counter, props]);
 
   return <p>Time left: {counter}</p>;
 }
