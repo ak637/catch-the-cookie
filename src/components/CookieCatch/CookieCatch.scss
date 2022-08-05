@@ -33,4 +33,9 @@
     width: 5%;
     cursor: pointer;
   }
+  &__pointsAlert {
+    display: inline-block;
+    z-index: 100;
+    font-size: 7rem;
+  }
 }

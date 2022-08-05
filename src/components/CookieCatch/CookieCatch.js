@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import "./CookieCatch.scss";
+import DisplayPoints from "../DisplayPoints/DisplayPoints";
 import exit from "../../assets/icons/exit-sign.png";
 
 function getWindowDimensions() {
@@ -31,7 +32,8 @@ function useWindowDimensions() {
 function CookieCatch({ score, setScore, setActiveGame }) {
   const { height, width } = useWindowDimensions();
   const [difficulty, setDifficulty] = useState(2);
-  const [counter, setCounter] = useState(15);
+  const [counter, setCounter] = useState(1500);
+  const [displayPoints, setDisplayPoints] = useState(false);
 
   useEffect(() => {
     const timer =
@@ -50,20 +52,20 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     endGame();
   }, [counter, setActiveGame]);
 
-  function displayPoints() {
-    return <div>+10 points!</div>;
-  }
-
   function exitHandler() {
     setActiveGame("start");
     setScore(0);
   }
 
   const canvasRef = useRef();
-  const increaseDifficulty = () => {
-    displayPoints();
+  const clickHandler = () => {
     setScore(score + 1);
     setDifficulty(difficulty - 0.1);
+    setDisplayPoints(true);
+    setTimeout(() => {
+      setDisplayPoints(false);
+    }, 3000);
+    // <p className="CookieCatchContainer__pointsAlert">+1 point!</p>;
   };
 
   useEffect(() => {
@@ -95,12 +97,13 @@ function CookieCatch({ score, setScore, setActiveGame }) {
           onClick={exitHandler}
         />
       </div>
+      {displayPoints === true && <DisplayPoints />}
       <div className="CookieCatchContainer__canvas" ref={canvasRef}>
         <img
           className="CookieCatchContainer__e"
           src="https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f36a.png"
           alt="Game"
-          onClick={increaseDifficulty}
+          onClick={clickHandler}
           draggable="false"
         />
       </div>
