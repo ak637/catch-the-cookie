@@ -29,7 +29,11 @@ function App() {
         />
       )}
       {activeGame === "CookieCatchTwo" && (
-        <CookieCatchTwo score={score} setScore={setScore} />
+        <CookieCatchTwo
+          score={score}
+          setScore={setScore}
+          setActiveGame={setActiveGame}
+        />
       )}
     </>
   );
