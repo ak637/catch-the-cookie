@@ -34,7 +34,24 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   const [difficulty, setDifficulty] = useState(2);
   const [counter, setCounter] = useState(1500);
   const [displayPoints, setDisplayPoints] = useState(false);
+  function useMouse() {
+    const [mousePosition, setMousePosition] = useState({
+      x: null,
+      y: null,
+    });
 
+    useEffect(() => {
+      function handle(e) {
+        setMousePosition({
+          x: e.pageX,
+          y: e.pageY,
+        });
+      }
+      document.addEventListener("mousemove", handle);
+      return () => document.removeEventListener("mousemove", handle);
+    });
+    return mousePosition;
+  }
   useEffect(() => {
     const timer =
       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
@@ -65,7 +82,6 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     setTimeout(() => {
       setDisplayPoints(false);
     }, 3000);
-    // <p className="CookieCatchContainer__pointsAlert">+1 point!</p>;
   };
 
   useEffect(() => {
@@ -81,14 +97,16 @@ function CookieCatch({ score, setScore, setActiveGame }) {
       },
     });
   });
-
+  const { x, y } = useMouse();
   return (
     <div className="CookieCatchContainer">
       <div className="CookieCatchContainer__header">
         <p className="CookieCatchContainer__text">
           Difficulty: {difficulty.toFixed(2)}
         </p>
-        <p className="CookieCatchContainer__text">Time left: {counter}</p>
+        <p className="CookieCatchContainer__text">Time left: {counter}</p>{" "}
+        <p className="CookieCatchContainer__text">X: {x}</p>
+        <p className="CookieCatchContainer__text">Y: {y}</p>
         <p className="CookieCatchContainer__text">Score: {score}</p>
         <img
           className="CookieCatchContainer__image"
