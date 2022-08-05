@@ -7,11 +7,17 @@ import croissant from "../../assets/icons/croissant.png";
 import doughnut from "../../assets/icons/doughnut.png";
 import kiwi from "../../assets/icons/kiwi.png";
 import munch from "../../assets/audio/munch.mp3";
+import exit from "../../assets/icons/exit-sign.png";
 
 function CookieCatchTwo({ score, setScore, setActiveGame }) {
   const [icons, setIcons] = useState([]);
   const [roundOver, setRounderOver] = useState(false);
   const [audio] = useState(new Audio(munch));
+
+  function exitHandler() {
+    setActiveGame("start");
+    setScore(0);
+  }
 
   const clickHandler = (e) => {
     if (e.target.currentSrc.search("cookie") > 0) {
@@ -58,11 +64,14 @@ function CookieCatchTwo({ score, setScore, setActiveGame }) {
   return (
     <section className="CookieMarquee">
       <div className="CookieMarquee__stats">
+        <Counter time={15} roundOver={setRounderOver} />
         <p className="CookieMarquee__stats-score">Score: {score}</p>
-
-        <div className="CookieMarquee__stats-time">
-          <Counter time={15} roundOver={setRounderOver} />
-        </div>
+        <img
+          className="CookieMarquee__exit"
+          src={exit}
+          alt="exit sign"
+          onClick={exitHandler}
+        />
       </div>
       <div className="CookieMarquee__scrollContainer">
         <div className="CookieMarquee__scrollText-ltr">{icons}</div>

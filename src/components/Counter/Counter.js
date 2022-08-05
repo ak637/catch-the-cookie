@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../Counter/Counter.scss";
 
 export default function Counter(props) {
   const [counter, setCounter] = useState(props.time);
@@ -15,5 +16,5 @@ export default function Counter(props) {
     }
   }, [counter, props]);
 
-  return <p>Time left: {counter}</p>;
+  return <p className="counter">Time left: {counter}</p>;
 }
