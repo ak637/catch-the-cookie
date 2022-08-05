@@ -6,13 +6,17 @@ import cookie from "../../assets/icons/cookie.png";
 import croissant from "../../assets/icons/croissant.png";
 import doughnut from "../../assets/icons/doughnut.png";
 import kiwi from "../../assets/icons/kiwi.png";
+import munch from "../../assets/audio/munch.mp3";
 
 function CookieCatchTwo({ score, setScore, setActiveGame }) {
   const [icons, setIcons] = useState([]);
   const [roundOver, setRounderOver] = useState(false);
+  const [audio] = useState(new Audio(munch));
 
   const clickHandler = (e) => {
     if (e.target.currentSrc.search("cookie") > 0) {
+      audio.currentTime = 0;
+      audio.play();
       setScore((prevState) => prevState + 1);
       e.target.style.display = "none";
     }
