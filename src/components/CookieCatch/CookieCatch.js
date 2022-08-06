@@ -4,6 +4,7 @@ import "./CookieCatch.scss";
 import DisplayPoints from "../DisplayPoints/DisplayPoints";
 import exit from "../../assets/icons/exit-sign.png";
 import correctAudio from "../../assets/audio/correct.wav";
+import countdownAudio from "../../assets/audio/countdown.wav";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -33,9 +34,10 @@ function useWindowDimensions() {
 function CookieCatch({ score, setScore, setActiveGame }) {
   const { height, width } = useWindowDimensions();
   const [difficulty, setDifficulty] = useState(2);
-  const [counter, setCounter] = useState(1500);
+  const [counter, setCounter] = useState(15);
   const [displayPoints, setDisplayPoints] = useState(false);
   const [audio] = useState(new Audio(correctAudio));
+  const [audiocountdown] = useState(new Audio(countdownAudio));
 
   // function useMouse() {
   const [staticPosition, setStaticPosition] = useState({
@@ -64,6 +66,10 @@ function CookieCatch({ score, setScore, setActiveGame }) {
       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
     return () => clearInterval(timer);
   }, [counter]);
+
+  if (counter === 3) {
+    audiocountdown.play();
+  }
 
   useEffect(() => {
     function endGame() {
