@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import "./CookieCatch.scss";
 import DisplayPoints from "../DisplayPoints/DisplayPoints";
 import exit from "../../assets/icons/exit-sign.png";
+import correctAudio from "../../assets/audio/correct.wav";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -34,24 +35,30 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   const [difficulty, setDifficulty] = useState(2);
   const [counter, setCounter] = useState(1500);
   const [displayPoints, setDisplayPoints] = useState(false);
-  function useMouse() {
-    const [mousePosition, setMousePosition] = useState({
-      x: null,
-      y: null,
-    });
+  const [audio] = useState(new Audio(correctAudio));
 
-    useEffect(() => {
-      function handle(e) {
-        setMousePosition({
-          x: e.pageX,
-          y: e.pageY,
-        });
-      }
-      document.addEventListener("mousemove", handle);
-      return () => document.removeEventListener("mousemove", handle);
-    });
-    return mousePosition;
-  }
+  // function useMouse() {
+  const [staticPosition, setStaticPosition] = useState({
+    x: null,
+    y: null,
+  });
+  const [mousePosition, setMousePosition] = useState({
+    x: null,
+    y: null,
+  });
+
+  //   useEffect(() => {
+  //     function handle(e) {
+  //       setMousePosition({
+  //         x: e.pageX,
+  //         y: e.pageY,
+  //       });
+  //     }
+  //     document.addEventListener("mousemove", handle);
+  //     return () => document.removeEventListener("mousemove", handle);
+  //   });
+  //   return mousePosition;
+  // }
   useEffect(() => {
     const timer =
       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
@@ -77,11 +84,17 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   const canvasRef = useRef();
   const clickHandler = () => {
     setScore(score + 1);
+    audio.play();
+    audio.currentTime = 0;
     setDifficulty(difficulty - 0.1);
     setDisplayPoints(true);
+    setStaticPosition({
+      x: mousePosition.x,
+      y: mousePosition.y,
+    });
     setTimeout(() => {
       setDisplayPoints(false);
-    }, 3000);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -97,7 +110,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
       },
     });
   });
-  const { x, y } = useMouse();
+  // const { x, y } = useMouse();
   return (
     <div className="CookieCatchContainer">
       <div className="CookieCatchContainer__header">
@@ -105,8 +118,8 @@ function CookieCatch({ score, setScore, setActiveGame }) {
           Difficulty: {difficulty.toFixed(2)}
         </p>
         <p className="CookieCatchContainer__text">Time left: {counter}</p>{" "}
-        <p className="CookieCatchContainer__text">X: {x}</p>
-        <p className="CookieCatchContainer__text">Y: {y}</p>
+        {/* <p className="CookieCatchContainer__text">X: {x}</p>
+        <p className="CookieCatchContainer__text">Y: {y}</p> */}
         <p className="CookieCatchContainer__text">Score: {score}</p>
         <img
           className="CookieCatchContainer__image"
@@ -115,7 +128,13 @@ function CookieCatch({ score, setScore, setActiveGame }) {
           onClick={exitHandler}
         />
       </div>
-      {displayPoints === true && <DisplayPoints />}
+      {displayPoints === true && (
+        <DisplayPoints
+          mousePosition={mousePosition}
+          setMousePosition={setMousePosition}
+          staticPosition={staticPosition}
+        />
+      )}
       <div className="CookieCatchContainer__canvas" ref={canvasRef}>
         <img
           className="CookieCatchContainer__e"
