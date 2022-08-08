@@ -100,7 +100,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     });
     setTimeout(() => {
       setDisplayPoints(false);
-    }, 1000);
+    }, 500);
   };
 
   useEffect(() => {

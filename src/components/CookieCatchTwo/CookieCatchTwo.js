@@ -30,7 +30,7 @@ function CookieCatchTwo({ score, setScore, setActiveGame }) {
 
   useEffect(() => {
     if (roundOver) {
-      setActiveGame("start");
+      setActiveGame("CookieFountain");
     }
   }, [roundOver, setActiveGame]);
 
