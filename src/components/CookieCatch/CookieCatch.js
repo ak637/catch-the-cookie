@@ -34,7 +34,7 @@ function useWindowDimensions() {
 function CookieCatch({ score, setScore, setActiveGame }) {
   const { height, width } = useWindowDimensions();
   const [difficulty, setDifficulty] = useState(2);
-  const [counter, setCounter] = useState(15);
+  const [counter, setCounter] = useState(10);
   const [displayPoints, setDisplayPoints] = useState(false);
   const [audio] = useState(new Audio(correctAudio));
   const [audiocountdown] = useState(new Audio(countdownAudio));
@@ -49,18 +49,6 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     y: null,
   });
 
-  //   useEffect(() => {
-  //     function handle(e) {
-  //       setMousePosition({
-  //         x: e.pageX,
-  //         y: e.pageY,
-  //       });
-  //     }
-  //     document.addEventListener("mousemove", handle);
-  //     return () => document.removeEventListener("mousemove", handle);
-  //   });
-  //   return mousePosition;
-  // }
   useEffect(() => {
     const timer =
       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
@@ -89,6 +77,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
 
   const canvasRef = useRef();
   const clickHandler = () => {
+    setCounter(counter + 1);
     setScore(score + 1);
     audio.play();
     audio.currentTime = 0;

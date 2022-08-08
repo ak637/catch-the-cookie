@@ -3,7 +3,7 @@ import Start from "./components/Start/Start";
 import { useState } from "react";
 import CookieCatch from "./components/CookieCatch/CookieCatch";
 import CookieCatchTwo from "./components/CookieCatchTwo/CookieCatchTwo";
-import CookieFountain from "./components/CookieFountain/CookieFountain";
+import HowToPlay from "./components/HowToPlay/HowToPlay";
 
 function App() {
   const [activeGame, setActiveGame] = useState("start");
@@ -22,6 +22,12 @@ function App() {
           />
         </div>
       )}
+      {activeGame === "HowToPlay" && (
+        <div className="App">
+          <div className="App__snow"></div>
+          <HowToPlay activeGame={activeGame} setActiveGame={setActiveGame} />
+        </div>
+      )}
       {activeGame === "CookieCatch" && (
         <CookieCatch
           score={score}
@@ -31,13 +37,6 @@ function App() {
       )}
       {activeGame === "CookieCatchTwo" && (
         <CookieCatchTwo
-          score={score}
-          setScore={setScore}
-          setActiveGame={setActiveGame}
-        />
-      )}
-      {activeGame === "CookieFountain" && (
-        <CookieFountain
           score={score}
           setScore={setScore}
           setActiveGame={setActiveGame}

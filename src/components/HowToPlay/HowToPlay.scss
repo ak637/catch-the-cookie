@@ -1,0 +1,48 @@
+@use "../../../styles/partials/typography";
+
+.startContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: auto;
+  padding: 0 5% 0 5%;
+  height: auto;
+  background-color: white;
+  opacity: 90%;
+  border-radius: 10px;
+  user-select: none;
+
+  &__title {
+    font-size: 5rem;
+    font-family: retro;
+  }
+  &__text {
+    font-size: 3rem;
+    text-align: center;
+    width: auto;
+  }
+
+  &__button {
+    font-size: 3rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px 7px 2px 7px;
+    &:hover {
+      border-style: dashed;
+      background-image: linear-gradient(
+        to right,
+        rgba(255, 0, 0, 1),
+        rgba(255, 0, 180, 1),
+        rgba(0, 100, 200, 1)
+      );
+      background-size: 100%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-background-clip: text;
+      -moz-text-fill-color: transparent;
+    }
+  }
+}

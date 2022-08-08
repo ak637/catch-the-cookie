@@ -12,6 +12,12 @@ const Start = ({ activeGame, setActiveGame, score, setScore }) => {
     }
   };
 
+  const HowClickHandler = () => {
+    if (activeGame !== "HowToPlay") {
+      setActiveGame("HowToPlay");
+    }
+  };
+
   return (
     <>
       {activeGame === "start" && (
@@ -31,7 +37,12 @@ const Start = ({ activeGame, setActiveGame, score, setScore }) => {
             PLAY!
           </h3>
           <div className="startContainer__subtitles">
-            <p className="startContainer__subtitles-text">How to play?</p>
+            <p
+              className="startContainer__subtitles-text"
+              onClick={HowClickHandler}
+            >
+              How to play?
+            </p>
             <p className="startContainer__subtitles-text">High Scores</p>
           </div>
         </section>
