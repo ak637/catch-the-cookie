@@ -18,6 +18,12 @@ const Start = ({ activeGame, setActiveGame, score, setScore }) => {
     }
   };
 
+  const HighscoreClickHandler = () => {
+    if (activeGame !== "highscores") {
+      setActiveGame("highscores");
+    }
+  };
+
   return (
     <>
       {activeGame === "start" && (
@@ -43,7 +49,12 @@ const Start = ({ activeGame, setActiveGame, score, setScore }) => {
             >
               How to play?
             </p>
-            <p className="startContainer__subtitles-text">High Scores</p>
+            <p
+              className="startContainer__subtitles-text"
+              onClick={HighscoreClickHandler}
+            >
+              High Scores
+            </p>
           </div>
         </section>
       )}

@@ -1,4 +1,4 @@
-import "./CookieCatchTwo.scss";
+import "./BonusLevel.scss";
 import { useEffect, useState } from "react";
 import Counter from "../Counter/Counter";
 import apple from "../../assets/icons/red-apple.png";

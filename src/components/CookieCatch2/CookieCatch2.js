@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
-import "./CookieCatch.scss";
+import "./CookieCatch2.scss";
 import DisplayPoints from "../DisplayPoints/DisplayPoints";
 import exit from "../../assets/icons/exit-sign.png";
 import correctAudio from "../../assets/audio/correct.wav";
@@ -62,7 +62,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   useEffect(() => {
     function endGame() {
       if (counter === 0) {
-        setActiveGame("CookieCatch2");
+        setActiveGame("CookieCatchTwo");
         return;
       }
     }
@@ -92,9 +92,38 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     }, 500);
   };
 
+  const canvasRef2 = useRef();
+  const clickHandler2 = () => {
+    setCounter(counter + 1);
+    setScore(score + 1);
+    audio.play();
+    audio.currentTime = 0;
+    setDifficulty(difficulty - 0.1);
+    setDisplayPoints(true);
+    setStaticPosition({
+      x: mousePosition.x,
+      y: mousePosition.y,
+    });
+    setTimeout(() => {
+      setDisplayPoints(false);
+    }, 500);
+  };
   useEffect(() => {
     const tl = gsap.timeline({ repeat: -1 });
     tl.to(canvasRef.current, difficulty, {
+      ease: "none",
+      x: Math.floor(Math.random() * width),
+      y: Math.floor(Math.random() * height),
+      onComplete: function () {
+        this.vars.x = Math.floor(Math.random() * width);
+        this.vars.y = Math.floor(Math.random() * height);
+        this.invalidate();
+      },
+    });
+  });
+  useEffect(() => {
+    const tl = gsap.timeline({ repeat: -1 });
+    tl.to(canvasRef2.current, difficulty, {
       ease: "rough",
       x: Math.floor(Math.random() * width),
       y: Math.floor(Math.random() * height),
@@ -136,6 +165,15 @@ function CookieCatch({ score, setScore, setActiveGame }) {
           src="https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f36a.png"
           alt="Game"
           onClick={clickHandler}
+          draggable="false"
+        />
+      </div>
+      <div className="CookieCatchContainer__canvas" ref={canvasRef2}>
+        <img
+          className="CookieCatchContainer__e"
+          src="https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f36a.png"
+          alt="Game"
+          onClick={clickHandler2}
           draggable="false"
         />
       </div>
