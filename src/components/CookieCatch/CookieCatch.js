@@ -89,7 +89,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     });
     setTimeout(() => {
       setDisplayPoints(false);
-    }, 500);
+    }, 250);
   };
 
   useEffect(() => {
@@ -104,7 +104,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
         this.invalidate();
       },
     });
-  });
+  }, [difficulty, height, width]);
   // const { x, y } = useMouse();
   return (
     <div className="CookieCatchContainer">
