@@ -15,7 +15,7 @@ const Highscores = ({ activeGame, setActiveGame }) => {
 
   const getHighscores = async () => {
     await axios
-      .get(`${BASE_URL}highscores?limit=3`)
+      .get(`${BASE_URL}highscores?limit=5`)
       // .then((response) => {
       //   setHighscoreData({ response });
       //   console.log(response.data[0].name);
@@ -42,8 +42,9 @@ const Highscores = ({ activeGame, setActiveGame }) => {
   const scoreList = highscoreData.map((highscore, index) => {
     return (
       <div key={index} className="score">
-        <p className="startContainer__text">{highscore.name}</p>
-        <p className="startContainer__text">{highscore.score}</p>
+        <p className="score__text">#{index + 1}</p>
+        <p className="score__text">{highscore.name}</p>
+        <p className="score__text">{highscore.score}</p>
       </div>
     );
   });
@@ -65,7 +66,11 @@ const Highscores = ({ activeGame, setActiveGame }) => {
       {activeGame === "highscores" && (
         <section className="startContainer">
           <h1 className="startContainer__title">Highscores!</h1>
-
+          <div className="score">
+            <p className="score__text-title">Rank</p>
+            <p className="score__text-title">Name</p>
+            <p className="score__text-title">Score</p>
+          </div>
           {scoreList}
           {/* <p className="startContainer__text">{highscoreData[0].name}</p> */}
 

@@ -46,3 +46,25 @@
     }
   }
 }
+
+.score {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  font-size: 4rem;
+  margin: 0;
+
+  &__text {
+    margin: 0;
+    // border: 1px solid black;
+    width: 100%;
+    text-align: center;
+    &-title {
+      text-decoration: underline;
+      margin: 0;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
