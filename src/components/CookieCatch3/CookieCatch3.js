@@ -35,7 +35,7 @@ function useWindowDimensions() {
 function CookieCatch({ score, setScore, setActiveGame }) {
   const { height, width } = useWindowDimensions();
   const [difficulty, setDifficulty] = useState(1.5);
-  const [counter, setCounter] = useState(1000);
+  const [counter, setCounter] = useState(10);
   const [displayPoints, setDisplayPoints] = useState(false);
   const [audio] = useState(new Audio(correctAudio));
   const [audiocountdown] = useState(new Audio(countdownAudio));
@@ -64,7 +64,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   useEffect(() => {
     function endGame() {
       if (counter === 0) {
-        setActiveGame("CookieCatchTwo");
+        setActiveGame("CookieCatch4");
         return;
       }
     }
@@ -226,7 +226,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
         <p className="CookieCatchContainer__text">Time left: {counter}</p>{" "}
         {/* <p className="CookieCatchContainer__text">X: {x}</p>
         <p className="CookieCatchContainer__text">Y: {y}</p> */}
-        <p className="CookieCatchContainer__text">Score: {score}</p>
+        <p className="CookieCatchContainer__text">Score: {score.toFixed(0)}</p>
         <img
           className="CookieCatchContainer__image"
           src={exit}
@@ -242,6 +242,8 @@ function CookieCatch({ score, setScore, setActiveGame }) {
           staticPosition={staticPosition}
         />
       )}
+      <p className="CookieCatchContainer__how2">GOLDEN COOKIE?</p>
+      <p className="CookieCatchContainer__sub">it adds 50% to your score</p>
       <div className="CookieCatchContainer__canvas" ref={canvasRef}>
         <img
           className="CookieCatchContainer__e"

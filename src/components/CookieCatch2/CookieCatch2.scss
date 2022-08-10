@@ -4,6 +4,17 @@
   height: 100vh;
   overflow: none;
   user-select: none;
+  &__how2 {
+    font-size: 15rem;
+    color: gray;
+    opacity: 50%;
+    width: 20%;
+    text-align: center;
+    float: left;
+    margin: 0%;
+    margin-left: 40vw;
+    margin-top: 10vh;
+  }
 
   &__header {
     display: flex;

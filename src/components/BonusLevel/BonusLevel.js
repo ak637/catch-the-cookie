@@ -65,7 +65,7 @@ function CookieCatchTwo({ score, setScore, setActiveGame }) {
     <section className="CookieMarquee">
       <div className="CookieMarquee__stats">
         <Counter time={15} roundOver={setRounderOver} />
-        <p className="CookieMarquee__stats-score">Score: {score}</p>
+        <p className="CookieMarquee__stats-score">Score: {score.toFixed(0)}</p>
         <img
           className="CookieMarquee__exit"
           src={exit}

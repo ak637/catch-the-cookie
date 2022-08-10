@@ -4,6 +4,7 @@ import { useState } from "react";
 import CookieCatch from "./components/CookieCatch/CookieCatch";
 import CookieCatch2 from "./components/CookieCatch2/CookieCatch2";
 import CookieCatch3 from "./components/CookieCatch3/CookieCatch3";
+import CookieCatch4 from "./components/CookieCatch4/CookieCatch4";
 import CookieCatchTwo from "./components/BonusLevel/BonusLevel";
 import HowToPlay from "./components/HowToPlay/HowToPlay";
 import Highscores from "./components/Highscores/Highscores";
@@ -53,6 +54,13 @@ function App() {
       )}
       {activeGame === "CookieCatch3" && (
         <CookieCatch3
+          score={score}
+          setScore={setScore}
+          setActiveGame={setActiveGame}
+        />
+      )}
+      {activeGame === "CookieCatch4" && (
+        <CookieCatch4
           score={score}
           setScore={setScore}
           setActiveGame={setActiveGame}

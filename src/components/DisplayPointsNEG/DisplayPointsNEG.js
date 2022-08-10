@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./DisplayPointsME.scss";
+import "./DisplayPointsNEG.scss";
 
 export default function Counter(props) {
   function useMouse() {
@@ -24,8 +24,8 @@ export default function Counter(props) {
   };
 
   return (
-    <p className="displayPoints" style={mystyle}>
-      +{props.points} points!
+    <p className="displayPointsNEG" style={mystyle}>
+      -{props.points.toFixed(0)} points!
     </p>
   );
 }

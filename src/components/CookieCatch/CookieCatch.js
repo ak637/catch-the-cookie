@@ -116,7 +116,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
         <p className="CookieCatchContainer__text">Time left: {counter}</p>{" "}
         {/* <p className="CookieCatchContainer__text">X: {x}</p>
         <p className="CookieCatchContainer__text">Y: {y}</p> */}
-        <p className="CookieCatchContainer__text">Score: {score}</p>
+        <p className="CookieCatchContainer__text">Score: {score.toFixed(0)}</p>
         <img
           className="CookieCatchContainer__image"
           src={exit}
