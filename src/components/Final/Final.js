@@ -22,6 +22,14 @@ const Final = ({ activeGame, setActiveGame, score, setScore }) => {
           <h2 className="startContainer__subtitle">
             Your Score: <p>{score}</p>
           </h2>
+          <form className="startContainer__form">
+            <input
+              type="text"
+              className="startContainer__input"
+              placeholder="Display Name..."
+            />
+            <p className="startContainer__button">Submit</p>
+          </form>
           <div className="startContainer__buttons">
             <p className="startContainer__button" onClick={clickHandler}>
               Main Menu
