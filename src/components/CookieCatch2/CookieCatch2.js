@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import "./CookieCatch2.scss";
-import DisplayPoints from "../DisplayPoints/DisplayPoints";
+import DisplayPoints from "../DisplayPointsME/DisplayPointsME";
 import exit from "../../assets/icons/exit-sign.png";
 import correctAudio from "../../assets/audio/correct.wav";
 import countdownAudio from "../../assets/audio/countdown.wav";
@@ -73,6 +73,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   function exitHandler() {
     setActiveGame("start");
     setScore(0);
+    audiocountdown.pause();
   }
 
   const canvasRef = useRef();
@@ -120,7 +121,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
         this.invalidate();
       },
     });
-  });
+  }, [difficulty, height, width]);
   useEffect(() => {
     const tl = gsap.timeline({ repeat: -1 });
     tl.to(canvasRef2.current, difficulty, {
@@ -133,7 +134,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
         this.invalidate();
       },
     });
-  });
+  }, [difficulty, height, width]);
   // const { x, y } = useMouse();
   return (
     <div className="CookieCatchContainer">

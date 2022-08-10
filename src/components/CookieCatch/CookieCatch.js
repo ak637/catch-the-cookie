@@ -73,6 +73,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   function exitHandler() {
     setActiveGame("start");
     setScore(0);
+    audiocountdown.pause();
   }
 
   const canvasRef = useRef();
@@ -89,7 +90,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     });
     setTimeout(() => {
       setDisplayPoints(false);
-    }, 250);
+    }, 500);
   };
 
   useEffect(() => {
@@ -123,13 +124,14 @@ function CookieCatch({ score, setScore, setActiveGame }) {
           onClick={exitHandler}
         />
       </div>
-      {displayPoints === true && (
+      {/* {displayPoints === true && (
         <DisplayPoints
           mousePosition={mousePosition}
           setMousePosition={setMousePosition}
           staticPosition={staticPosition}
         />
-      )}
+      )} */}
+      <p className="CookieCatchContainer__how">CLICK THE COOKIE!</p>
       <div className="CookieCatchContainer__canvas" ref={canvasRef}>
         <img
           className="CookieCatchContainer__e"
@@ -138,6 +140,13 @@ function CookieCatch({ score, setScore, setActiveGame }) {
           onClick={clickHandler}
           draggable="false"
         />
+        {displayPoints === true && (
+          <DisplayPoints
+            mousePosition={mousePosition}
+            setMousePosition={setMousePosition}
+            staticPosition={staticPosition}
+          />
+        )}
       </div>
     </div>
   );
