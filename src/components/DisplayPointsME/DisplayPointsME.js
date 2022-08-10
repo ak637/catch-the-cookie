@@ -26,7 +26,7 @@ export default function Counter(props) {
 
   return (
     <p className="displayPoints" style={mystyle}>
-      +1 point!
+      +{props.points} points!
     </p>
   );
 }

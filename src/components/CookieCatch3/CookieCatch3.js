@@ -1,10 +1,11 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
-import "./CookieCatch2.scss";
+import "./CookieCatch3.scss";
 import DisplayPoints from "../DisplayPointsME/DisplayPointsME";
 import exit from "../../assets/icons/exit-sign.png";
 import correctAudio from "../../assets/audio/correct.wav";
 import countdownAudio from "../../assets/audio/countdown.wav";
+import goldCookie from "../../assets/icons/goldenCookie.png";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -33,8 +34,8 @@ function useWindowDimensions() {
 
 function CookieCatch({ score, setScore, setActiveGame }) {
   const { height, width } = useWindowDimensions();
-  const [difficulty, setDifficulty] = useState(2);
-  const [counter, setCounter] = useState(10);
+  const [difficulty, setDifficulty] = useState(1.5);
+  const [counter, setCounter] = useState(1000);
   const [displayPoints, setDisplayPoints] = useState(false);
   const [audio] = useState(new Audio(correctAudio));
   const [audiocountdown] = useState(new Audio(countdownAudio));
@@ -63,7 +64,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   useEffect(() => {
     function endGame() {
       if (counter === 0) {
-        setActiveGame("CookieCatch3");
+        setActiveGame("CookieCatchTwo");
         return;
       }
     }
@@ -82,6 +83,23 @@ function CookieCatch({ score, setScore, setActiveGame }) {
     setCounter(counter + 1);
     setScore(score + 1);
     setPoints(1);
+    audio.play();
+    audio.currentTime = 0;
+    setDifficulty(difficulty - 0.1);
+    setDisplayPoints(true);
+    setStaticPosition({
+      x: mousePosition.x,
+      y: mousePosition.y,
+    });
+    setTimeout(() => {
+      setDisplayPoints(false);
+    }, 500);
+  };
+  const clickHandlerGolden = () => {
+    document.getElementById("test").style.display = "none";
+    setCounter(counter + 5);
+    setScore(score * 1.5);
+    setPoints(score / 2);
     audio.play();
     audio.currentTime = 0;
     setDifficulty(difficulty - 0.1);
@@ -115,7 +133,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   useEffect(() => {
     const tl = gsap.timeline({ repeat: -1 });
     tl.to(canvasRef.current, difficulty, {
-      ease: "none",
+      ease: "rough",
       x: Math.floor(Math.random() * width),
       y: Math.floor(Math.random() * height),
       onComplete: function () {
@@ -138,6 +156,66 @@ function CookieCatch({ score, setScore, setActiveGame }) {
       },
     });
   }, [difficulty, height, width]);
+
+  const canvasRef3 = useRef();
+  const clickHandler3 = () => {
+    setCounter(counter + 1);
+    setScore(score + 1);
+    setPoints(1);
+    audio.play();
+    audio.currentTime = 0;
+    setDifficulty(difficulty - 0.1);
+    setDisplayPoints(true);
+    setStaticPosition({
+      x: mousePosition.x,
+      y: mousePosition.y,
+    });
+    setTimeout(() => {
+      setDisplayPoints(false);
+    }, 500);
+  };
+  useEffect(() => {
+    const tl = gsap.timeline({ repeat: -1 });
+    tl.to(canvasRef3.current, difficulty, {
+      ease: "rough",
+      x: Math.floor(Math.random() * width),
+      y: Math.floor(Math.random() * height),
+      onComplete: function () {
+        this.vars.x = Math.floor(Math.random() * width);
+        this.vars.y = Math.floor(Math.random() * height);
+        this.invalidate();
+      },
+    });
+  }, [difficulty, height, width]);
+  useEffect(() => {
+    const tl = gsap.timeline({ repeat: -1 });
+    tl.to(canvasRef3.current, difficulty, {
+      ease: "rough",
+      x: Math.floor(Math.random() * width),
+      y: Math.floor(Math.random() * height),
+      onComplete: function () {
+        this.vars.x = Math.floor(Math.random() * width);
+        this.vars.y = Math.floor(Math.random() * height);
+        this.invalidate();
+      },
+    });
+  }, [difficulty, height, width]);
+
+  const canvasRef4 = useRef();
+  useEffect(() => {
+    const tl = gsap.timeline({ repeat: -1 });
+    tl.to(canvasRef4.current, 0.8, {
+      ease: "rough",
+      x: Math.floor(Math.random() * width),
+      y: Math.floor(Math.random() * height),
+      onComplete: function () {
+        this.vars.x = Math.floor(Math.random() * width);
+        this.vars.y = Math.floor(Math.random() * height);
+        this.invalidate();
+      },
+    });
+  }, [difficulty, height, width]);
+
   // const { x, y } = useMouse();
   return (
     <div className="CookieCatchContainer">
@@ -179,6 +257,25 @@ function CookieCatch({ score, setScore, setActiveGame }) {
           src="https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f36a.png"
           alt="Game"
           onClick={clickHandler2}
+          draggable="false"
+        />
+      </div>
+      <div className="CookieCatchContainer__canvas" ref={canvasRef3}>
+        <img
+          className="CookieCatchContainer__e"
+          src="https://images.emojiterra.com/google/noto-emoji/v2.034/128px/1f36a.png"
+          alt="Game"
+          onClick={clickHandler3}
+          draggable="false"
+        />
+      </div>
+      <div className="CookieCatchContainer__canvas" ref={canvasRef4}>
+        <img
+          id="test"
+          className="CookieCatchContainer__golden"
+          src={goldCookie}
+          alt="Game"
+          onClick={clickHandlerGolden}
           draggable="false"
         />
       </div>
