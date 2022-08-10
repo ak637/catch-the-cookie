@@ -76,7 +76,7 @@ const Highscores = ({ activeGame, setActiveGame }) => {
 
           {/* <div>{scoreList}</div> */}
           <p className="startContainer__button" onClick={clickHandler}>
-            Go back
+            Main Menu
           </p>
         </section>
       )}

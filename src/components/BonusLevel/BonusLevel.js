@@ -9,7 +9,13 @@ import kiwi from "../../assets/icons/kiwi.png";
 import munch from "../../assets/audio/munch.mp3";
 import exit from "../../assets/icons/exit-sign.png";
 
-function CookieCatchTwo({ score, setScore, setActiveGame }) {
+function CookieCatchTwo({
+  score,
+  setScore,
+  setActiveGame,
+  // multiplier,
+  // setMultiplier,
+}) {
   const [icons, setIcons] = useState([]);
   const [roundOver, setRounderOver] = useState(false);
   const [audio] = useState(new Audio(munch));
@@ -21,8 +27,12 @@ function CookieCatchTwo({ score, setScore, setActiveGame }) {
 
   const clickHandler = (e) => {
     if (e.target.currentSrc.search("cookie") > 0) {
+      // setMultiplier((prevState) => prevState + 1);
+      // console.log(multiplier);
       audio.currentTime = 0;
       audio.play();
+      // let multipliedScore = 1 * multiplier;
+      // console.log("MP:", multipliedScore);
       setScore((prevState) => prevState + 1);
       e.target.style.display = "none";
     }
@@ -30,7 +40,7 @@ function CookieCatchTwo({ score, setScore, setActiveGame }) {
 
   useEffect(() => {
     if (roundOver) {
-      setActiveGame("start");
+      setActiveGame("final");
     }
   }, [roundOver, setActiveGame]);
 
@@ -66,6 +76,7 @@ function CookieCatchTwo({ score, setScore, setActiveGame }) {
       <div className="CookieMarquee__stats">
         <Counter time={15} roundOver={setRounderOver} />
         <p className="CookieMarquee__stats-score">Score: {score.toFixed(0)}</p>
+        {/* <p className="CookieMarquee__stats-score">Multiplier: {multiplier}x</p> */}
         <img
           className="CookieMarquee__exit"
           src={exit}

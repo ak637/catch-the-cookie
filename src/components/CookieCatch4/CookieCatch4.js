@@ -66,7 +66,7 @@ function CookieCatch({ score, setScore, setActiveGame }) {
   useEffect(() => {
     function endGame() {
       if (counter === 0) {
-        setActiveGame("CookieCatchTwo");
+        setActiveGame("BonusLevel");
         return;
       }
     }
