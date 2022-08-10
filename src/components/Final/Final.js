@@ -1,5 +1,8 @@
 import "./Final.scss";
+import axios from "axios";
 // import { useState } from "react";
+
+const BASE_URL = "http://localhost:5500/";
 
 const Final = ({ activeGame, setActiveGame, score, setScore }) => {
   const clickHandler = () => {
@@ -12,6 +15,20 @@ const Final = ({ activeGame, setActiveGame, score, setScore }) => {
     if (activeGame !== "highscores") {
       setActiveGame("highscores");
     }
+  };
+
+  const submitHandler = () => {
+    axios
+      .post(`${BASE_URL}highscores`, {
+        name: document.getElementById("name").value,
+        score: score,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -27,8 +44,17 @@ const Final = ({ activeGame, setActiveGame, score, setScore }) => {
               type="text"
               className="startContainer__input"
               placeholder="Display Name..."
+              id="name"
+              required="true"
+              maxLength={3}
             />
-            <p className="startContainer__button">Submit</p>
+            <button
+              className="startContainer__submit"
+              onClick={submitHandler}
+              type="submit"
+            >
+              Submit
+            </button>
           </form>
           <div className="startContainer__buttons">
             <p className="startContainer__button" onClick={clickHandler}>

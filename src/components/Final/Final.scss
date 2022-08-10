@@ -13,6 +13,31 @@
   border-radius: 10px;
   user-select: none;
 
+  &__submit {
+    font-size: 3rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 42.5px;
+    margin: 30px 0px;
+    cursor: pointer;
+    padding: 2px 7px 2px 7px;
+    &:hover {
+      border-style: dashed;
+      background-image: linear-gradient(
+        to right,
+        rgba(255, 0, 0, 1),
+        rgba(255, 0, 180, 1),
+        rgba(0, 100, 200, 1)
+      );
+      background-size: 100%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-background-clip: text;
+      -moz-text-fill-color: transparent;
+    }
+  }
+
   &__form {
     display: flex;
     flex-direction: row;
