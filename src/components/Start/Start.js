@@ -8,6 +8,7 @@ const Start = ({ activeGame, setActiveGame, score, setScore }) => {
   const clickHandler = () => {
     if (activeGame !== "CookieCatch") {
       setActiveGame("CookieCatch");
+      setScore(0);
       audio.pause();
     }
   };

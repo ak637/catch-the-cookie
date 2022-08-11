@@ -8,12 +8,14 @@ const Final = ({ activeGame, setActiveGame, score, setScore }) => {
   const clickHandler = () => {
     if (activeGame !== "start") {
       setActiveGame("start");
+      setScore(0);
     }
   };
 
   const clickHandlerHighscores = () => {
     if (activeGame !== "highscores") {
       setActiveGame("highscores");
+      setScore(0);
     }
   };
 
