@@ -2,7 +2,7 @@ import "./Highscores.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const BASE_URL = "http://localhost:5500/";
+const BASE_URL = process.env.REACT_APP_BACKEND_API_BASE_URL;
 
 const Highscores = ({ activeGame, setActiveGame }) => {
   const [highscoreData, setHighscoreData] = useState([]);

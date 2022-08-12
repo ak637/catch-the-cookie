@@ -12,9 +12,12 @@ Fork this repository to begin.
 
 ```bash
   cd catch-the-cookie
+  cp .env.example .env
   npm i
   npm start
 ```
+
+Ensure the `.env` has the backend URL
 
 ## Tech Stack
 
