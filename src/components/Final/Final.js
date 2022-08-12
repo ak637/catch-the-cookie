@@ -2,7 +2,7 @@ import "./Final.scss";
 import axios from "axios";
 // import { useState } from "react";
 
-const BASE_URL = "http://localhost:5500/";
+const BASE_URL = process.env.REACT_APP_BACKEND_API_BASE_URL;
 
 const Final = ({ activeGame, setActiveGame, score, setScore }) => {
   const clickHandler = () => {
