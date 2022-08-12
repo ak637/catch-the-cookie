@@ -74,7 +74,7 @@ function CookieCatchTwo({
   return (
     <section className="CookieMarquee">
       <div className="CookieMarquee__stats">
-        <Counter time={15} roundOver={setRounderOver} />
+        <Counter time={10} roundOver={setRounderOver} />
         <p className="CookieMarquee__stats-score">Score: {score.toFixed(0)}</p>
         {/* <p className="CookieMarquee__stats-score">Multiplier: {multiplier}x</p> */}
         <img
@@ -92,6 +92,9 @@ function CookieCatchTwo({
         <div className="CookieMarquee__scrollText-ltr">{icons}</div>
         <div className="CookieMarquee__scrollText-rtl">{icons}</div>
         <div className="CookieMarquee__scrollText-ltr">{icons}</div>
+        <div className="CookieMarquee__scrollText-rtl">{icons}</div>
+        <div className="CookieMarquee__scrollText-ltr">{icons}</div>
+        <div className="CookieMarquee__scrollText-rtl">{icons}</div>
       </div>
     </section>
   );
