@@ -19,7 +19,8 @@ const Final = ({ activeGame, setActiveGame, score, setScore }) => {
     }
   };
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     axios
       .post(`${BASE_URL}highscores`, {
         name: document.getElementById("name").value,
